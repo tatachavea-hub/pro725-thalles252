@@ -1,0 +1,76 @@
+
+
+-- =========================
+-- TABELA CLIENTE
+-- =========================
+CREATE TABLE cliente
+(
+ Nome VARCHAR(100),  
+ codigocliente INT PRIMARY KEY,  
+ cpf INT,  
+ idadecliente INT  
+);
+
+
+
+
+-- =========================
+-- TABELA MEDICO
+-- =========================
+CREATE TABLE medico
+(
+ codigomedico INT PRIMARY KEY,  
+ cpf INT,  
+ cbo INT,  
+ nome VARCHAR(100)  
+);
+
+
+
+
+-- =========================
+-- TABELA CONSULTA
+-- =========================
+CREATE TABLE consulta
+(
+ guia INT PRIMARY KEY,  
+ codigocliente INT,
+ codigomedico INT,
+ dataatd DATE,
+ idcliente INT,
+
+
+ FOREIGN KEY (codigocliente)
+ REFERENCES cliente(codigocliente),
+
+
+ FOREIGN KEY (idcliente)
+ REFERENCES cliente(codigocliente)
+);
+
+
+
+
+-- =========================
+-- TABELA ATENDIMENTO
+-- =========================
+CREATE TABLE atendimento
+(
+ codigomedico INT,
+ guia INT,
+
+
+ PRIMARY KEY (codigomedico, guia),
+
+
+ FOREIGN KEY (codigomedico)
+ REFERENCES medico(codigomedico),
+
+
+ FOREIGN KEY (guia)
+ REFERENCES consulta(guia)
+);
+
+
+
+
